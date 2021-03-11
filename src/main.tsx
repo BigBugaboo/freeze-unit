@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import Page from '@/common/page';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Page>
+      123
+    </Page>
   </React.StrictMode>,
   document.getElementById('root')
 )
