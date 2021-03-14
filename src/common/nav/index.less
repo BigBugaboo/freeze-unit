@@ -2,19 +2,30 @@
 
 .level (@i) when (@i >0) {
   .fu-nav-item-level-@{i} {
-    padding-left: floor(@i*10px);
+    padding-left: floor(@i*20px);
   }
 
   .level(@i - 1);
 }
 
+.fu-nav-box {
+  display: flex;
+}
+
 .fu-nav {
-  display: inline-block;
+  height: 100vh;
   width: auto;
   background-color: @fu-color-primary;
 
   &-item {
+    cursor: pointer;
     color: @fu-color-light;
+    padding: 5px 15px;
+
+    &:hover {
+      background-color: @fu-color-bg-light;
+      color: @fu-color-dark;
+    }
   }
 
   .level(2);

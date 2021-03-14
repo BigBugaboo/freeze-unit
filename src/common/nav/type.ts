@@ -12,4 +12,5 @@ export type flatItemType = {
 
 export interface NavProps {
   data: itemType[];
+  container?: JSX.Element;
 }

@@ -30,7 +30,7 @@ const navConfig = [
 ReactDOM.render(
     <React.StrictMode>
         <Page>
-            <Nav data={navConfig} />
+            <Nav data={navConfig} container={<div>123</div>} />
         </Page>
     </React.StrictMode>,
     document.getElementById('root')
