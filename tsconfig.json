@@ -1,8 +1,18 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client", "@types/node"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "vite/client",
+      "@types/node",
+      "@types/lodash",
+      "@types/why-did-you-update",
+      "@types/classnames"
+    ],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -16,8 +26,12 @@
     "noEmit": true,
     "jsx": "react",
     "paths": {
-      "@/*": ["./src/*"],
-    },
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": ["./src"]
+  "include": [
+    "./src"
+  ]
 }

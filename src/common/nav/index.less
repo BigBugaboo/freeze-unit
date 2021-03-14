@@ -1,0 +1,21 @@
+@import "@/style/variable.less";
+
+.level (@i) when (@i >0) {
+  .fu-nav-item-level-@{i} {
+    padding-left: floor(@i*10px);
+  }
+
+  .level(@i - 1);
+}
+
+.fu-nav {
+  display: inline-block;
+  width: auto;
+  background-color: @fu-color-primary;
+
+  &-item {
+    color: @fu-color-light;
+  }
+
+  .level(2);
+}
