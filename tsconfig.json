@@ -11,7 +11,10 @@
       "@types/node",
       "@types/lodash",
       "@types/why-did-you-update",
-      "@types/classnames"
+      "@types/classnames",
+      "@types/history",
+      "@types/react-router-dom",
+      "@types/react-loadable"
     ],
     "allowJs": false,
     "skipLibCheck": false,
