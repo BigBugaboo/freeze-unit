@@ -4,18 +4,19 @@
 
 import React, { FC, memo } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Loadable from 'react-loadable';
+import loadable from '@loadable/component';
 import _ from 'lodash';
 import Loading from './loading';
 import NoMatch from './no_match';
 import {
-    RouteBaseProps,
     NavConfigItem,
     RedirectBaseProps,
     AutoRouterProps,
 } from './type';
 
-const pages = import.meta.globEager('/src/**/*.page*');
+const pages = import.meta.glob('/src/**/*.page*');
+
+console.log(pages)
 
 function getRouteList(Loading: any) {
     const routeList = _.map(Object.keys(pages), (key) => {
@@ -24,20 +25,30 @@ function getRouteList(Loading: any) {
         // slice(1) delete .
         // slice(0, -1) delete index.page.xxx
         // 剩下就是路由部分
-        const pathArr = key.slice(1).split('/').slice(0, -1);
+        let pathArr = key.slice(1).split('/').slice(0, -1);
+        // delete src
+        pathArr.shift();
         return {
             path: `/${pathArr.join('/')}`,
-            loader: pages[key].default(),
+            loader: pages[key],
         };
     });
 
     const RouteList = _.map(routeList, (v) => {
+        // @ts-ignore
+        const LoadableComponent = loadable(
+            v.loader,
+            {
+                fallback: () => <Loading />,
+            }
+        );
+
         return (
             <Route
                 key={v.path}
                 exact
                 path={v.path}
-                component={() => v.loader}
+                component={() => <LoadableComponent />}
             />
         );
     });

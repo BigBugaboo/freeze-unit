@@ -19,10 +19,10 @@ ReactDOM.render(
             <div>
                 <ul>
                     <li>
-                        <i onClick={() => { history.replace('/src/page/home')}}>Home</i>
+                        <i onClick={() => { history.replace('/page/home')}}>Home</i>
                     </li>
                     <li>
-                        <i onClick={() => { history.replace('/src/page/about')}}>Users</i>
+                        <i onClick={() => { history.replace('/page/about')}}>Users</i>
                     </li>
                 </ul>
             </div>
