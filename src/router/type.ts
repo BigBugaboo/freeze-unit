@@ -13,7 +13,7 @@ export interface NavConfigItem {
 
 export interface AutoRouterProps {
   navConfig?: NavConfigItem[]
-  NoMatch?: React.ComponentType<RouteComponentProps>
-  Loading?: React.ReactElement
+  renderNoMatch?: React.ComponentType<RouteComponentProps>
+  renderLoading?: React.ComponentType<any>
   children?: React.ReactElement
 }

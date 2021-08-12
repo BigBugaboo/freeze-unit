@@ -6,8 +6,7 @@ import React, { FC, memo } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 import _ from 'lodash';
-import Loading from './loading';
-import NoMatch from './no_match';
+
 import {
     NavConfigItem,
     RedirectBaseProps,
@@ -16,9 +15,7 @@ import {
 
 const pages = import.meta.glob('/src/**/*.page*');
 
-console.log(pages)
-
-function getRouteList(Loading: any) {
+function getRouteList(Loading?: React.ComponentType<any>) {
     const routeList = _.map(Object.keys(pages), (key) => {
         // ./home/index.page.xxx => /home
 
@@ -36,19 +33,14 @@ function getRouteList(Loading: any) {
 
     const RouteList = _.map(routeList, (v) => {
         // @ts-ignore
-        const LoadableComponent = loadable(
-            v.loader,
-            {
-                fallback: () => <Loading />,
-            }
-        );
+        const LoadableComponent = loadable(v.loader);
 
         return (
             <Route
                 key={v.path}
                 exact
                 path={v.path}
-                component={() => <LoadableComponent />}
+                component={LoadableComponent}
             />
         );
     });
@@ -84,15 +76,15 @@ function getRedirect(navConfig: NavConfigItem[]) {
 const AutoRouter: FC<AutoRouterProps> = ({
     navConfig,
     children,
-    Loading,
-    NoMatch,
+    renderLoading,
+    renderNoMatch,
 }) => {
     return (
         <Switch>
             {children}
             {navConfig && getRedirect(navConfig)}
-            {getRouteList(Loading)}
-            <Route exact component={NoMatch} />
+            {getRouteList(renderLoading)}
+            <Route exact component={renderNoMatch} />
         </Switch>
     );
 };
